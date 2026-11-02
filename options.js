@@ -21,7 +21,7 @@ export function attachOptions(card,g,resolveImage){
  function choose(i){const picked=g.options[i];g.choice=picked;
   let img=card.querySelector('.art img');if(img){img.src=resolveImage(picked.image);img.alt=picked.name;}
   body.querySelector('h3').textContent=picked.name;
-  label.textContent=i?'Option '+(i+1):'First choice';
+  label.textContent=[i?'Option '+(i+1):'First choice',picked.variant].filter(Boolean).join(' · ');
   body.querySelector('.description').textContent=picked.description||'';body.querySelector('.pricing strong').textContent=money(picked.price);
   const link=body.querySelector('.links a');link.href=picked.url;link.firstChild.textContent=i?'View alternative':'View gift';
   buttons.forEach((b,n)=>b.setAttribute('aria-pressed',String(n===i)));
