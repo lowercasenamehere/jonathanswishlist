@@ -6,7 +6,7 @@ export function groupOptions(gifts){
  if(skinner&&rivers.length){skinner.options=[{...skinner},...rivers.map(g=>({...g,image:'https://jonathanswishlist.com/'+(slug(g)==='15080-2'?'crooked-wood-official.png':'crooked-black-official.png')}))];gifts=gifts.filter(g=>!rivers.includes(g));}
  for(const g of gifts){if(!g.name.toLowerCase().includes('adam leather jeans belt'))continue;
   const brown=/brown|bourbon/i.test(g.name+' '+g.variant+' '+g.description);const code=brown?'TB0A29G7214':'TB0A29G7001';
-  g.options=[{...g},{id:'timberland-'+code,name:'Timberland Classic Jean Belt · '+(brown?'Brown':'Black'),brand:'Timberland',price:brown?29.99:38,url:'https://www.timberland.com/en-us/p/men/accessories-10058/mens-35mm-classic-jean-belt-'+code,variant:brown?'Brown':'Black',description:'35mm cow-leather belt with a dark gunmetal buckle.',image:'https://assets.timberland.com/images/t_img/f_auto%2Ch_650%2Ce_sharpen%3A60%2Cw_650/dpr_2.0/'+(brown?'v1718954612/':'v1718936390/')+code+'-HERO/Mens-35MM-Classic-Jean-Belt-TBL-'+(brown?'Brown':'Black')+'-HERO.png'}];
+  g.options=[{...g},{id:'timberland-'+code,name:'Timberland Classic Jean Belt · '+(brown?'Brown':'Black'),brand:'Timberland',price:brown?29.99:38,url:'https://www.timberland.com/en-us/p/men/accessories-10058/mens-35mm-classic-jean-belt-'+code,variant:brown?'Brown':'Black',description:'35mm cow-leather belt with a dark gunmetal buckle.',image:'https://jonathanswishlist.com/timberland-'+(brown?'brown':'black')+'.jpg'}];
  }
  return gifts;
 }
