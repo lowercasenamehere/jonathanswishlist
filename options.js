@@ -16,12 +16,13 @@ export function groupOptions(gifts){
  {id:'uniqlo-wide-black',optionLabel:'Alternative 1',name:'UNIQLO Wide Chino Pants · Black',brand:'UNIQLO',price:null,url:'https://www.uniqlo.com/us/en/products/E470549-000/01?colorDisplayCode=09',variant:'Black · Waist 32 · 30-inch hem preferred',description:'Wide tapered chinos with belt loops. 100% cotton.',image:'https://jonathanswishlist.com/uniqlo-wide-black.jpg'},
  {id:'empyre-cool-black',optionLabel:'Alternative 2',name:'Empyre Cool Black Loose Skate Chinos',brand:'Empyre',price:19.99,url:'https://www.zumiez.com/empyre-cool-black-loose-skate-chino-pants.html',variant:'Black · Waist 32',description:'Loose-fit skate chinos with four pockets. 60% cotton, 40% polyester.',image:'https://jonathanswishlist.com/empyre-cool-black.jpg'},
  ...(dickies?[{...dickies,optionLabel:'Alternative 3'}]:[])];gifts=gifts.filter(g=>g!==dickies);}
+ for(const g of gifts){if(g.id!=='sedici-waist-black')continue;g.optionKind='bag';g.options=[{...g},{id:'fox-slim-black',name:'Fox Slim Hip Pack · Black',brand:'Fox Racing',price:59.95,url:'https://www.foxracing.com/product/slim-hip-pack/27147.html?dwvar_27147_color=001',variant:'Black · One size',description:'Low-profile waist pack with divided pockets, a key hook, and breathable mesh backing.',image:'https://jonathanswishlist.com/fox-slim-black.jpg'}];}
  return gifts;
 }
 export function attachOptions(card,g,resolveImage){
  if(!g.options)return;
  const panel=document.createElement('details');panel.className='gift-options';const title=document.createElement('summary');title.textContent='Other options';panel.append(title);
- const note=document.createElement('p');note.textContent=g.optionKind==='pants'?'Choose one pair.':g.options[0].name.includes('Skinner')?'Choose one knife.':g.options[0].name.includes('Henley')?'Choose one color.':'Choose one belt.';panel.append(note);
+ const note=document.createElement('p');note.textContent=g.optionKind==='bag'?'Choose one bag.':g.optionKind==='pants'?'Choose one pair.':g.options[0].name.includes('Skinner')?'Choose one knife.':g.options[0].name.includes('Henley')?'Choose one color.':'Choose one belt.';panel.append(note);
  const choices=document.createElement('div');choices.className='option-choices';panel.append(choices);
  const buttons=[];const body=card.querySelector('.body');let label=body.querySelector('.variant');if(!label){label=document.createElement('p');label.className='variant';body.querySelector('h3').after(label);}
  function choose(i){const picked=g.options[i];g.choice=picked;
