@@ -9,12 +9,13 @@ export function groupOptions(gifts){
   const brown=/brown|bourbon/i.test(g.name+' '+g.variant+' '+g.description);const color=brown?'Whiskey Barrel Brown':'Midnight Black';
   g.options=[{...g},{id:'mainstreet-'+(brown?'brown':'black'),name:'Main Street Forge Classic Belt · '+color,brand:'Main Street Forge',price:44.99,url:'https://mainstreetforge.com/products/classic-everyday-leather-belt-made-in-usa-mens-leather-belt',variant:color,description:'Full-grain leather belt with a removable roller buckle. Made in the USA.',image:'https://jonathanswishlist.com/mainstreet-'+(brown?'brown':'black')+'.jpg'}];
  }
+ for(const g of gifts){if(!(g.url||'').includes('E482766'))continue;g.options=[{...g},{...g,id:g.id+'-gray',name:'Uniqlo Waffle Henley · Dark Gray',variant:'08 Dark Gray',url:'https://www.uniqlo.com/us/en/products/E482766-000/00?colorDisplayCode=08',image:'https://jonathanswishlist.com/uniqlo-henley-gray.jpg'}];}
  return gifts;
 }
 export function attachOptions(card,g,resolveImage){
  if(!g.options)return;
  const panel=document.createElement('details');panel.className='gift-options';const title=document.createElement('summary');title.textContent='Other options';panel.append(title);
- const note=document.createElement('p');note.textContent=g.options[0].name.includes('Skinner')?'Choose one knife.':'Choose one belt.';panel.append(note);
+ const note=document.createElement('p');note.textContent=g.options[0].name.includes('Skinner')?'Choose one knife.':g.options[0].name.includes('Henley')?'Choose one color.':'Choose one belt.';panel.append(note);
  const choices=document.createElement('div');choices.className='option-choices';panel.append(choices);
  const buttons=[];const body=card.querySelector('.body');let label=body.querySelector('.variant');if(!label){label=document.createElement('p');label.className='variant';body.querySelector('h3').after(label);}
  function choose(i){const picked=g.options[i];g.choice=picked;
