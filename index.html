@@ -15,7 +15,7 @@ try {
  const {attachRating}=await import('./ratings.js?v=1');
  const {groupOptions,attachOptions}=await import('./options.js?v=7');gifts=groupOptions(gifts);
  const knifeOrder=['15002-saddle-mountain-skinner','15080-2','15080bk-04'];
- const rank=g=>{const i=knifeOrder.indexOf((g.url||'').split('/').pop().split('?')[0]);return i<0?99:i;};gifts.sort((a,b)=>rank(a)-rank(b));
+ const rank=g=>{const i=knifeOrder.indexOf((g.url||'').split('/').pop().split('?')[0]);return i<0?99:i;};
  const grid=document.getElementById('gift-grid');const fragment=document.createDocumentFragment();
  for(const [index,g] of gifts.entries()){
   const card=document.createElement('article');card.className='card';card.classList.toggle('knife-card',rank(g)<99);card.dataset.category=g.category||'Other';card.dataset.prices=g.price==null?'':String(g.price);
