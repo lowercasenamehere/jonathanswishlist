@@ -7,9 +7,9 @@ export function groupOptions(gifts){
  for(const g of gifts){
   if(!g.name.toLowerCase().includes('adam leather jeans belt'))continue;
   const brown=/brown|bourbon/i.test(g.name+' '+g.variant+' '+g.description);const color=brown?'Whiskey Barrel Brown':'Midnight Black';
-  g.options=[{...g},{id:'mainstreet-'+(brown?'brown':'black'),name:'Main Street Forge Classic Belt · '+color,brand:'Main Street Forge',price:44.99,url:'https://mainstreetforge.com/products/classic-everyday-leather-belt-made-in-usa-mens-leather-belt',variant:color,description:'Full-grain leather belt with a removable roller buckle. Made in the USA.',image:'https://jonathanswishlist.com/mainstreet-'+(brown?'brown':'black')+'.jpg'}];
+  g.options=[{...g},{id:'mainstreet-'+(brown?'brown':'black'),name:'Main Street Forge Classic Belt · '+color,brand:'Main Street Forge',price:44.99,url:'https://mainstreetforge.com/products/classic-everyday-leather-belt-made-in-usa-mens-leather-belt',variant:color,description:'Full-grain leather belt with a removable roller buckle. Made in the USA.',image:'https://jonathanswishlist.com/mainstreet-'+(brown?'brown':'black')+'-cutout.png'}];
  }
- for(const g of gifts){if(!(g.url||'').includes('E482766'))continue;g.options=[{...g},{...g,id:g.id+'-gray',name:'Uniqlo Waffle Henley · Dark Gray',variant:'08 Dark Gray',url:'https://www.uniqlo.com/us/en/products/E482766-000/00?colorDisplayCode=08',image:'https://jonathanswishlist.com/uniqlo-henley-gray.jpg'}];}
+ for(const g of gifts){if(!(g.url||'').includes('E482766'))continue;g.options=[{...g},{...g,id:g.id+'-gray',name:'Uniqlo Waffle Henley · Dark Gray',variant:'08 Dark Gray',url:'https://www.uniqlo.com/us/en/products/E482766-000/00?colorDisplayCode=08',image:'https://jonathanswishlist.com/uniqlo-henley-gray-cutout.png'}];}
  return gifts;
 }
 export function attachOptions(card,g,resolveImage){

@@ -8,7 +8,7 @@ try {
  if(!response.ok)throw Error('Wishlist unavailable');
  let gifts=await response.json();if(!Array.isArray(gifts))throw Error('Invalid wishlist');
  const {attachRating}=await import('./ratings.js?v=1');
- const {groupOptions,attachOptions}=await import('./options.js?v=5');gifts=groupOptions(gifts);
+ const {groupOptions,attachOptions}=await import('./options.js?v=6');gifts=groupOptions(gifts);
  const knifeOrder=['15002-saddle-mountain-skinner','15080-2','15080bk-04'];
  const rank=g=>{const i=knifeOrder.indexOf((g.url||'').split('/').pop().split('?')[0]);return i<0?99:i;};gifts.sort((a,b)=>rank(a)-rank(b));
  const grid=document.getElementById('gift-grid');const fragment=document.createDocumentFragment();
