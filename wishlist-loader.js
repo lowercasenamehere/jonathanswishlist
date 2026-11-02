@@ -7,9 +7,11 @@ try {
  const response=await fetch(editorOrigin+'/api/gifts',{signal:AbortSignal.timeout(6000)});
  if(!response.ok)throw Error('Wishlist unavailable');
  const gifts=await response.json();if(!Array.isArray(gifts))throw Error('Invalid wishlist');
+ const knifeOrder=['15002-saddle-mountain-skinner','15080-2','15080bk-04'];
+ const rank=g=>{const i=knifeOrder.indexOf((g.url||'').split('/').pop().split('?')[0]);return i<0?99:i;};gifts.sort((a,b)=>rank(a)-rank(b));
  const grid=document.getElementById('gift-grid');const fragment=document.createDocumentFragment();
  for(const [index,g] of gifts.entries()){
-  const card=document.createElement('article');card.className='card';card.dataset.category=g.category||'Other';card.dataset.prices=g.price==null?'':String(g.price);
+  const card=document.createElement('article');card.className='card';card.classList.toggle('knife-card',rank(g)<99);card.dataset.category=g.category||'Other';card.dataset.prices=g.price==null?'':String(g.price);
   const art=document.createElement('div');art.className='art';const num=document.createElement('span');num.className='number';num.textContent=String(index+1).padStart(2,'0');art.append(num);
   if(g.image&&(/^(https:\/\/|data:image\/jpeg;base64,)/.test(g.image))){const img=document.createElement('img');img.src=resolveImage(g.image);img.alt=g.name;img.width=600;img.height=600;img.loading='lazy';art.append(img);}else{const mark=document.createElement('span');mark.textContent=(g.brand||g.name||'G').slice(0,1);mark.style.cssText='font:italic 70px Georgia;color:#b8b0a0';art.append(mark);}
   const body=document.createElement('div');body.className='body';
