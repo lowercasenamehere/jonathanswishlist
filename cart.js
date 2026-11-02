@@ -4,7 +4,7 @@ export function initCart(gifts){
  const summary=document.createElement('div');summary.className='wishlist-summary';
  const total=document.createElement('strong');total.className='wishlist-total';total.textContent=money(gifts.reduce((n,g)=>n+(known(g)?g.price:0),0))+' total';
  const count=document.querySelector('.gift-count');count.before(summary);summary.append(total,count);
- if(gifts.some(g=>g.options)){const note=document.createElement('small');note.textContent='First choices only · alternatives excluded';summary.append(note);}
+ 
  if(gifts.some(g=>!known(g))){const note=document.createElement('small');note.textContent='Excludes gifts with prices TBD';summary.append(note);}
  const open=document.createElement('button');open.className='cart-open';open.textContent='Cart (0)';document.querySelector('header').append(open);
  const dialog=document.createElement('dialog');dialog.className='cart-dialog';dialog.setAttribute('aria-labelledby','cart-title');dialog.innerHTML='<div class="cart-heading"><h2 id="cart-title">Your cart</h2><button type="button" aria-label="Close cart">×</button></div><p class="cart-intro">Select gifts to plan your total. Buy each gift through its store link.</p><div class="cart-items"></div><div class="cart-footer"><strong aria-live="polite"></strong><button type="button">Clear cart</button></div><p class="cart-note"></p>';document.body.append(dialog);

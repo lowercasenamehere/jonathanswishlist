@@ -25,7 +25,7 @@ try {
  grid.replaceChildren(fragment);const categories=document.querySelector('.category-filters');categories.replaceChildren();
  for(const value of ['All',...new Set(gifts.map(g=>g.category||'Other'))]){const chip=document.createElement('button');chip.type='button';chip.className='filter-chip'+(value==='All'?' selected':'');chip.dataset.filter=value;chip.setAttribute('aria-pressed',String(value==='All'));chip.textContent=value==='All'?'All gifts':value;categories.append(chip);}
  document.querySelector('.gift-count').textContent=gifts.length+' gift ideas';
- const {initCart}=await import('./cart.js?v=options-1');initCart(gifts);document.getElementById('load-status').hidden=true;document.querySelector('.filters').hidden=false;
+ const {initCart}=await import('./cart.js?v=options-2');initCart(gifts);document.getElementById('load-status').hidden=true;document.querySelector('.filters').hidden=false;
 }catch(error){document.getElementById('load-status').textContent='Could not load the wishlist. Please refresh to try again.';}
 
 
