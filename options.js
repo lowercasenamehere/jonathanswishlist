@@ -10,6 +10,20 @@ export function groupOptions(gifts){
   g.options=[{...g},{id:'mainstreet-'+(brown?'brown':'black'),name:'Main Street Forge Classic Belt · '+color,brand:'Main Street Forge',price:44.99,url:'https://mainstreetforge.com/products/classic-everyday-leather-belt-made-in-usa-mens-leather-belt',variant:color,description:'Full-grain leather belt with a removable roller buckle. Made in the USA.',image:'https://jonathanswishlist.com/mainstreet-'+(brown?'brown':'black')+'-cutout.png'}];
  }
  for(const g of gifts){if(!(g.url||'').includes('E482766'))continue;g.options=[{...g},{...g,id:g.id+'-gray',name:'Uniqlo Waffle Henley · Dark Gray',variant:'08 Dark Gray',url:'https://www.uniqlo.com/us/en/products/E482766-000/00?colorDisplayCode=08',image:'https://jonathanswishlist.com/uniqlo-henley-gray-cutout.png'}];}
+ const saber=gifts.find(g=>g.id==='wiley-x-saber-advanced');
+ if(saber){
+  const black={...saber,name:'Wiley X Saber Advanced · Matte Black',variant:'Matte Black · Smoke Grey / Clear / Light Rust',optionLabel:'Option 2'};
+  Object.assign(saber,{
+   name:'Wiley X Saber Advanced · Matte OD Green',
+   variant:'Matte OD Green · Smoke Grey / Clear / Light Rust',
+   description:'Protective glasses with three interchangeable shields.',
+   url:'https://www.wileyx.com/products/saber-advanced-308g',
+   image:'https://www.wileyx.com/cdn/shop/files/SaberAdvanced-308G-quarter-all.png?v=1771512949',
+   price:84,
+   optionKind:'eyewear'
+  });
+  saber.options=[{...saber,optionLabel:'Option 1'},black];
+ }
  const hm=gifts.find(g=>(g.url||'').includes('1311239001'));
  const dickies=gifts.find(g=>(g.url||'').includes('247-loose-fit'));
  if(hm){hm.optionKind='pants';hm.options=[{...hm,optionLabel:'First choice'},
@@ -22,7 +36,7 @@ export function groupOptions(gifts){
 export function attachOptions(card,g,resolveImage){
  if(!g.options)return;
  const panel=document.createElement('details');panel.className='gift-options';const title=document.createElement('summary');title.textContent='Other options';panel.append(title);
- const note=document.createElement('p');note.textContent=g.optionKind==='bag'?'Choose one bag.':g.optionKind==='pants'?'Choose one pair.':g.options[0].name.includes('Skinner')?'Choose one knife.':g.options[0].name.includes('Henley')?'Choose one color.':'Choose one belt.';panel.append(note);
+ const note=document.createElement('p');note.textContent=g.optionKind==='bag'?'Choose one bag.':g.optionKind==='pants'?'Choose one pair.':g.options[0].name.includes('Skinner')?'Choose one knife.':(g.optionKind==='eyewear'||g.options[0].name.includes('Henley'))?'Choose one color.':'Choose one belt.';panel.append(note);
  const choices=document.createElement('div');choices.className='option-choices';panel.append(choices);
  const buttons=[];const body=card.querySelector('.body');let label=body.querySelector('.variant');if(!label){label=document.createElement('p');label.className='variant';body.querySelector('h3').after(label);}
  function choose(i){const picked=g.options[i];g.choice=picked;
