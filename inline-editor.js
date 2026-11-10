@@ -164,7 +164,13 @@ if (nav && grid && onWishlist) {
     rating.min = '1'; rating.max = '5'; rating.step = '1';
     field(form, 'ratingNote', 'Rating note', gift.ratingNote).maxLength = 120;
     field(form, 'bought', 'Bought', gift.bought, 'checkbox');
-    field(form, 'buyerNote', 'Who might buy it? (public)', gift.buyerNote).maxLength = 120;
+    const buyer = field(form, 'buyerNote', 'Who might buy it? (public)', gift.buyerNote);
+    buyer.maxLength = 120;
+    buyer.placeholder = 'Girlfriend, GF, maybe family…';
+    const buyerHint = element('small', 'Enter Girlfriend or GF to give this gift a gold star.');
+    buyerHint.id = 'girlfriend-star-hint';
+    buyer.setAttribute('aria-describedby', buyerHint.id);
+    buyer.parentElement.append(buyerHint);
     field(form, 'image', 'Photo link', gift.image?.startsWith('https://') ? gift.image : '', 'url');
     const upload = field(form, 'photo', 'Upload a replacement photo', '', 'file');
     upload.accept = 'image/*';
