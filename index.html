@@ -31,6 +31,8 @@ try {
  for(const value of ['All',...new Set(gifts.map(g=>g.category||'Other'))]){const chip=document.createElement('button');chip.type='button';chip.className='filter-chip'+(value==='All'?' selected':'');chip.dataset.filter=value;chip.setAttribute('aria-pressed',String(value==='All'));chip.textContent=value==='All'?'All gifts':value;categories.append(chip);}
  document.querySelector('.gift-count').textContent=gifts.length+' gift ideas';
  const {initCart}=await import('./cart.js?v=options-2');initCart(gifts);document.getElementById('load-status').hidden=true;document.querySelector('.filters').hidden=false;
+ try{const y=sessionStorage.getItem('wishlist-editor-scroll');sessionStorage.removeItem('wishlist-editor-scroll');if(y!==null)requestAnimationFrame(()=>scrollTo(0,Number(y)));}catch{}
+
 }catch(error){document.getElementById('load-status').textContent='Could not load the wishlist. Please refresh to try again.';}
 
 
@@ -89,4 +91,4 @@ try {
  arrange();apply();
  if(['#vinyl-records','#car-care','#jaguar-upgrades'].includes(location.hash)){history.replaceState(null,'','#wishlist');document.getElementById('wishlist').scrollIntoView();}
 })();
-</script></body></html>
+</script><script type="module" src="./inline-editor.js?v=1"></script></body></html>
