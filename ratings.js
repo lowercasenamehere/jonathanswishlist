@@ -7,6 +7,6 @@ export function attachRating(card,g){
  const status=document.createElement('section');status.className='gift-rating';status.setAttribute('aria-label','Gift status');
  const state=document.createElement('span');state.className='rating-label';state.textContent=g.bought===true?'✓ Bought':'Gift status';status.append(state);
  if(g.buyerNote){const note=document.createElement('p');note.className='rating-note';note.textContent=g.buyerNote;status.append(note);}
- const manage=edit.cloneNode();manage.textContent='Edit gift status';status.append(manage);
+ const manage=edit.cloneNode();manage.textContent='Edit gift';status.append(manage);
  card.querySelector('.body').append(status);
 }
